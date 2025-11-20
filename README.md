@@ -1,66 +1,125 @@
-# AI Chat Endpoint (Spring Boot)
+# AI Automation Endpoints (Spring Boot)
 
-This project is a simple REST API endpoint that accepts a message and returns
-an AI-style response. It is designed as a clean and professional portfolio
-example to demonstrate backend development and AI integration structure.
-
----
-
-## ✅ Features
-- POST `/api/chat` endpoint
-- Accepts JSON input
-- Returns a formatted AI-style reply
-- Built with Spring Boot (Java 17)
-- Ready for AI integration (OpenAI or local LLM can be plugged in easily)
+This project contains multiple AI-ready backend automation endpoints built with Java and Spring Boot.  
+Each endpoint demonstrates clean backend architecture, structured request/response models, and a service layer designed for future AI or LLM integration.
 
 ---
 
-## 📌 Example Request
+## 🚀 Features
 
-```
-POST http://localhost:8081/api/chat
-Content-Type: application/json
-```
+### **1. AI Chat Endpoint**
+A simple REST endpoint that returns an AI-style response.
 
-#### Request Body
+**Endpoint:**  
+`POST /api/chat`
+
+**Example Request**
 ```json
 {
-  "message": "Hello AI"
+  "message": "Hello"
+}
+```
+
+**Example Response**
+```json
+{
+  "response": "AI Response: Hello"
 }
 ```
 
 ---
 
-## 📌 Example Response
+### **2. Email Classifier Endpoint**
+A rule-based classifier that categorizes incoming emails into business-friendly types.
+
+**Endpoint:**  
+`POST /api/email/classify`
+
+**Example Request**
 ```json
 {
-  "reply": "AI Response: Hello AI"
+  "subject": "Refund request for last month invoice",
+  "body": "Hi, I was charged twice and I would like a refund."
 }
 ```
+
+**Example Response**
+```json
+{
+  "category": "Billing / Refund",
+  "confidence": 0.9,
+  "explanation": "Detected billing-related keywords such as 'refund', 'invoice' or 'payment'."
+}
+```
+
+**Classification categories**
+- Billing / Refund
+- Support
+- Lead / Sales
+- General
+
+---
+
+## 📁 Project Structure
+
+```
+src/main/java/com/aiportfolio/chatendpoint
+├── ChatendpointApplication.java
+│
+├── controller
+│   ├── ChatController.java
+│   └── EmailClassifierController.java
+│
+├── model
+│   ├── ChatRequest.java
+│   ├── ChatResponse.java
+│   ├── EmailRequest.java
+│   └── EmailResponse.java
+│
+└── service
+    └── EmailClassifierService.java
+```
+
+The structure follows clean layered architecture:
+
+- **controller** → REST endpoints
+- **model** → DTO classes
+- **service** → business logic
 
 ---
 
 ## 🛠 Tech Stack
-- Java 17
+
+- Java 17+
 - Spring Boot
-- REST API
-- JSON (Jackson)
+- Spring Web
+- Lombok
+- Maven
+- REST API Architecture
 
 ---
 
-## 📷 Screenshots
-- `screenshot-code.png` — Controller code & project structure
-- `screenshot-postman.png` — Successful API call in Postman
+## ▶️ How to Run
+
+1. Clone the repository
+2. Navigate to the project folder
+3. Run the application:
+
+```
+mvn spring-boot:run
+```
+
+4. Server starts at:
+
+```
+http://localhost:8081
+```
+
+(Some environments use port 8080.)
 
 ---
 
-## 📄 Purpose
-This project was built as part of a professional Upwork portfolio to showcase:
+## 📌 Purpose
 
-- Clean backend architecture
-- REST API development
-- AI-ready workflow structure
-- Ability to deliver small automation components quickly
-
-It demonstrates the foundations used in AI-powered automations, chatbots, and backend integrations.
-
+This project is part of a professional backend & AI automation portfolio.  
+It demonstrates clean API design, extendable architecture, and real automation logic ready for future AI integration.
